@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './components/App';
+import { ThemeProvider } from "styled-components"; //一個 <ThemeProvider>的外層 Component 來實踐換網站主題設計的系統
+
+const theme = {
+  colors : {
+    red_300: '#c02828',
+    red_400: '#ffa7a7',
+    red_500: '#ff4949',
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+      <App />
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
