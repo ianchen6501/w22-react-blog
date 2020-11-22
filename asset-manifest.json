@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/my-app/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/my-app/static/js/main.ab2ef41c.chunk.js",
-    "main.js.map": "/my-app/static/js/main.ab2ef41c.chunk.js.map",
-    "runtime-main.js": "/my-app/static/js/runtime-main.7dd821e3.js",
-    "runtime-main.js.map": "/my-app/static/js/runtime-main.7dd821e3.js.map",
-    "static/js/2.1ef7120b.chunk.js": "/my-app/static/js/2.1ef7120b.chunk.js",
-    "static/js/2.1ef7120b.chunk.js.map": "/my-app/static/js/2.1ef7120b.chunk.js.map",
-    "index.html": "/my-app/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/my-app/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.1ef7120b.chunk.js.LICENSE.txt": "/my-app/static/js/2.1ef7120b.chunk.js.LICENSE.txt"
+    "main.css": "/w22-react-blog/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/w22-react-blog/static/js/main.ab2ef41c.chunk.js",
+    "main.js.map": "/w22-react-blog/static/js/main.ab2ef41c.chunk.js.map",
+    "runtime-main.js": "/w22-react-blog/static/js/runtime-main.ed294c0d.js",
+    "runtime-main.js.map": "/w22-react-blog/static/js/runtime-main.ed294c0d.js.map",
+    "static/js/2.69ec05da.chunk.js": "/w22-react-blog/static/js/2.69ec05da.chunk.js",
+    "static/js/2.69ec05da.chunk.js.map": "/w22-react-blog/static/js/2.69ec05da.chunk.js.map",
+    "index.html": "/w22-react-blog/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/w22-react-blog/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.69ec05da.chunk.js.LICENSE.txt": "/w22-react-blog/static/js/2.69ec05da.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.7dd821e3.js",
-    "static/js/2.1ef7120b.chunk.js",
+    "static/js/runtime-main.ed294c0d.js",
+    "static/js/2.69ec05da.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
     "static/js/main.ab2ef41c.chunk.js"
   ]
