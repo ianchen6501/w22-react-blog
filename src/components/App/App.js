@@ -24,8 +24,8 @@ export default function App() {
   const [isLoadinGetMe, setIsLoadinGetMe] = useState(false)
 
   useEffect(() => {
-    setIsLoadinGetMe(true)
     if(localStorage.getItem('token')) {
+      setIsLoadinGetMe(true)
       getMe().then(response => {
         if(response.ok) {
           setUser(() => {
