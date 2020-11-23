@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import styled from "styled-components"
-import { login, getMe } from '../../WebAPI'
+import { register, getMe } from '../../WebAPI'
 import { setAuthToken } from '../../utils'
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../contexts'
@@ -45,18 +45,19 @@ export default function LoginPage() {
   const { setUser } = useContext(AuthContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [nickname, setNickname] = useState('')
   const [errorMessage, setErrormessage] = useState('')
   const history = useHistory()
 
   const handleSubmit = (event) => {
     setErrormessage(null)
     event.preventDefault()
-    login(username, password).then(data => {
+    register(username, password, nickname)
+    .then(data => {
       if(data.ok === 0) {
         return setErrormessage(data.message)
       }
       setAuthToken(data.token)
-
       getMe().then(response => {
         if (response.ok !== 1) {
           setAuthToken(null)
@@ -79,7 +80,11 @@ export default function LoginPage() {
           password:{" "}
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
         </InputContainer>
-        <Button>登入</Button>
+        <InputContainer>
+          nickname:{" "}
+          <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)}></input>
+        </InputContainer>
+        <Button>註冊</Button>
         { errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage> }
       </form>
     </Container>

@@ -19,13 +19,17 @@ const HeaderContainer =styled.div `
   bottom: 0;
   position: fixed;
   border-bottom: solid 0.1px rgb(0,0,0,0.2);
-  padding: 0px, 30px
-  background: rgb(5,5,5,0.2)
+  padding: 0px, 30px;
+  background: white;
+  box-shadow: 0.2px 0.2px 0.3px;
 `
 
 const Brand = styled.div `
+  margin-left: 20px;
   font-size: 32px;
   font-weight: bold;
+  text-decoration: none;
+  color: black;
 `
 
 const NavbarList = styled.div `
@@ -74,16 +78,17 @@ export default function Header() {
   return (
     <HeaderContainer>
       <LeftContainer>
-        <Brand>小明的部落格</Brand>
+        <Brand as={Link} to='/'>大家的部落格</Brand>
         <NavbarList>
           <Nav to='/' $active={location.pathname === '/'} >首頁</Nav>
+          <Nav to='/about' $active={location.pathname === '/about'} >關於</Nav>
           { user && <Nav to='/new-post' $active={location.pathname === '/new-post'}>發布文章</Nav> }
         </NavbarList>
       </LeftContainer>
       <NavbarList>
-        { !user? <Nav to='/login' $active={location.pathname === '/login'}>登入</Nav> :
-        <Nav onClick={handleLogout}>登出</Nav>
-      }
+        { !user && <Nav to='/login' $active={location.pathname === '/login'}>登入</Nav> }
+        { !user && <Nav to='/register' $active={location.pathname === '/register'}>註冊</Nav> }
+        { user && <Nav onClick={handleLogout}>登出</Nav>}
       </NavbarList>
     </HeaderContainer>
   )
