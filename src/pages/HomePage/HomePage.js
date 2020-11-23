@@ -52,7 +52,7 @@ const PostRightContainer = styled.div `
 
 function Post({post, setIsDeletingPost}) {
   function handleDeletePost(event) {
-    setIsDeletingPost(() => {return false})
+    setIsDeletingPost(() => {return true})
     deletePost(event).then(() => {
       setIsDeletingPost(() => {return false})
     })
