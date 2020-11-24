@@ -68,7 +68,6 @@ export const submitPost = (title, body) => {
 export const deletePost = (event) => {
   const id = Number(event.target.getAttribute('id'))
   const token = getAuthToken()
-  console.log(token)
   return fetch(`${BASE_URL}/posts/${id}`, {
     method: 'DELETE',
     headers: {

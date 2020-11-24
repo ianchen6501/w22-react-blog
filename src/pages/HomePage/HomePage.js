@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useLayoutEffect, useState } from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
@@ -69,13 +69,7 @@ const LoadingPage = styled.div `
   font-scale: bold;
 `
 
-function Post({post, setIsDeletingPost}) {
-  function handleDeletePost(event) {
-    setIsDeletingPost(() => {return true})
-    deletePost(event).then(() => {
-      setIsDeletingPost(() => {return false})
-    })
-  }
+function Post({post, handleDeletePost}) {
 
   return (
     <PostContainer>
@@ -122,11 +116,11 @@ PageControler.propTypes = {
 export default function HomePage() {
   const [posts, setPosts] = useState([])
   const [pages, setPages] = useState({})
-  const [isDeletingPost, setIsDeletingPost] = useState(false)
   const [isLoadingPost, setIsLoadingPost] = useState(false)
+  const [deletingPostToggle, setDeletingPostToggle] = useState(false)
   const capacity = 5
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsLoadingPost(true)
     getPosts()
     .then(posts => {
@@ -139,7 +133,7 @@ export default function HomePage() {
         currentPage: 1
       })
     })
-  }, [isDeletingPost])
+  }, [deletingPostToggle])
 
   function getCurrentPage(posts, pages) {
     if(true) { 
@@ -149,11 +143,19 @@ export default function HomePage() {
     return
   }
 
+  function handleDeletePost(event) { 
+    deletePost(event).then(() => {
+      setDeletingPostToggle(!deletingPostToggle)
+    })
+  }
+
   return (
     <Container>
         { !isLoadingPost && (
           <PostsContainer>
-            { getCurrentPage(posts, pages).map(post => <Post post={post} key={post.id} setIsDeletingPost={setIsDeletingPost}></Post>) }
+            { getCurrentPage(posts, pages).map(post => 
+              <Post post={post} key={post.id} handleDeletePost={handleDeletePost}></Post>)
+            }
           </PostsContainer>
         )}
       { !isLoadingPost && <PageControler pages={pages} setPages={setPages}></PageControler> }
