@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts'
 
 const ErrorMessage = styled.div `
   color: red;
+  margin-top: 20px;
 `
 
 const Container = styled.div `
@@ -15,7 +16,9 @@ const Container = styled.div `
   transform: translate(-50%,0px);
   width: 30vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-top: 30px;
   background: white;
   padding-top: 20px;
@@ -85,8 +88,8 @@ export default function LoginPage() {
           <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)}></input>
         </InputContainer>
         <Button>註冊</Button>
-        { errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage> }
       </form>
+      { errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage> }
     </Container>
   )
 }
