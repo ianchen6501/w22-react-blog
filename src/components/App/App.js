@@ -15,8 +15,21 @@ import Header from '../Header'
 import { AuthContext } from "../../contexts";
 import { getMe } from "../../WebAPI"
 
-const Root = styled.div `
+const CenterContainer = styled.div `
   padding-top: 64px;
+  padding-bottom: 50px;
+`
+
+const Footer = styled.div `
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${props => props.theme.colors.light_gray};
 `
 
 export default function App() {
@@ -39,33 +52,34 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={{user, setUser}}>
-      {!isLoadinGetMe && (
-        <Root>
           <Router>
-              <Header />
-              <Switch>
-                <Route exact path="/"> 
-                  <HomePage />
-                </Route>
-                <Route path="/about"> 
-                  <AboutPage />
-                </Route>
-                <Route path="/new-post"> 
-                  <NewPostPage />
-                </Route>
-                <Route path="/login">
-                  <LoginPage />
-                </Route>
-                <Route path="/posts/:id">
-                  <SinglePostPage />
-                </Route>
-                <Route path="/register">
-                  <RegisterPage />
-                </Route>
-              </Switch>
+            {!isLoadinGetMe && <Header /> }
+            {!isLoadinGetMe && (
+              <CenterContainer>
+                <Switch>
+                  <Route exact path="/"> 
+                    <HomePage/>
+                  </Route>
+                  <Route path="/about"> 
+                    <AboutPage />
+                  </Route>
+                  <Route path="/new-post"> 
+                    <NewPostPage />
+                  </Route>
+                  <Route path="/login">
+                    <LoginPage />
+                  </Route>
+                  <Route path="/posts/:id">
+                    <SinglePostPage />
+                  </Route>
+                  <Route path="/register">
+                    <RegisterPage />
+                  </Route>
+                </Switch>
+              </CenterContainer>
+            )}
+            {!isLoadinGetMe && <Footer>Made by Ian!</Footer> }
           </Router>
-        </Root>
-      )}
     </AuthContext.Provider>
   )
 }

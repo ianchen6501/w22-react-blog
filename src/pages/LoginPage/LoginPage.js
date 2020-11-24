@@ -42,46 +42,7 @@ const Button = styled.button `
 `
 
 export default function LoginPage() {
-  const { setUser } = useContext(AuthContext)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorMessage, setErrormessage] = useState('')
-  const history = useHistory()
-
-  const handleSubmit = (event) => {
-    setErrormessage(null)
-    event.preventDefault()
-    login(username, password).then(data => {
-      if(data.ok === 0) {
-        return setErrormessage(data.message)
-      }
-      setAuthToken(data.token)
-
-      getMe().then(response => {
-        if (response.ok !== 1) {
-          setAuthToken(null)
-          return setErrormessage(response.toString())
-        }
-        setUser(response.data)
-        history.push('/')
-      })
-    })
-  }
-
   return (
-    <Container>
-      <form onSubmit={handleSubmit}>
-        <InputContainer>
-          username:{" "}
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
-        </InputContainer>
-        <InputContainer>
-          password:{" "}
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-        </InputContainer>
-        <Button>登入</Button>
-        { errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage> }
-      </form>
-    </Container>
+    <Container>Loading</Container>
   )
 }

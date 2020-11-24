@@ -47,6 +47,11 @@ const Nav = styled(Link) `
   cursor: pointer;
   color: black;
   text-decoration: none;
+  transition: font-size 0.3s;
+
+  &:hover {
+    font-size:18px
+  }
 
   ${(props) => 
     props.$active && `background: rgb(0,0,0,0.2)`

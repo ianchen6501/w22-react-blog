@@ -4,9 +4,14 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import {deletePost, getPosts} from '../../WebAPI'
 
-const Root = styled.div `
+const Container = styled.div `
   width: 80%;
   margin: 0 auto;
+`
+
+const PostsContainer = styled.div `
+  margin-top: 30px;
+  outline: solid ${props => props.theme.colors.light_gray} 0.5px;
 `
 
 const PostContainer = styled.div `
@@ -15,6 +20,10 @@ const PostContainer = styled.div `
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+
+  &:hover {
+    box-shadow: 0.5px 0.5px 2px 0px ;
+  }
 `
 
 const PostTitle = styled(Link) `
@@ -48,6 +57,16 @@ const DeleteButton = styled.button `
 
 const PostRightContainer = styled.div `
   display: flex;
+`
+
+const LoadingPage = styled.div `
+  position: relative;
+  width: 100%;
+  top: 30vh;
+  text-align: center;
+  font-size: 40px;
+  color: rgb(0,0,0,0.1)
+  font-scale: bold;
 `
 
 function Post({post, setIsDeletingPost}) {
@@ -104,12 +123,15 @@ export default function HomePage() {
   const [posts, setPosts] = useState([])
   const [pages, setPages] = useState({})
   const [isDeletingPost, setIsDeletingPost] = useState(false)
+  const [isLoadingPost, setIsLoadingPost] = useState(false)
   const capacity = 5
 
   useEffect(() => {
+    setIsLoadingPost(true)
     getPosts()
     .then(posts => {
-      setPosts(() => {return posts})
+      setPosts(posts)
+      setIsLoadingPost(false)
       const postsLength = posts.length
       const pagesCount = postsLength % capacity ? Math.floor(postsLength/capacity)+1 : Math.floor(postsLength/capacity)
       setPages({
@@ -128,10 +150,15 @@ export default function HomePage() {
   }
 
   return (
-    <Root>
-      { getCurrentPage(posts, pages).map(post => <Post post={post} key={post.id} setIsDeletingPost={setIsDeletingPost}></Post>) }
-      <PageControler pages={pages} setPages={setPages}></PageControler>
-    </Root>
+    <Container>
+        { !isLoadingPost && (
+          <PostsContainer>
+            { getCurrentPage(posts, pages).map(post => <Post post={post} key={post.id} setIsDeletingPost={setIsDeletingPost}></Post>) }
+          </PostsContainer>
+        )}
+      { !isLoadingPost && <PageControler pages={pages} setPages={setPages}></PageControler> }
+      { isLoadingPost && <LoadingPage>Loading</LoadingPage> }
+    </Container>
   )
 }
 
