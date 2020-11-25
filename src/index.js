@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components"; //一個 <ThemeProvider>的�
 const theme = {
   colors : {
     light_gray : '#D0D0D0',
+    black : '#d40202',
   }
 }
 

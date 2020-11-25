@@ -11,7 +11,7 @@ const Container = styled.div `
 
 const PostsContainer = styled.div `
   margin-top: 30px;
-  outline: solid ${props => props.theme.colors.light_gray} 0.5px;
+  outline: solid rgb(0,0,0,0.2) 0.5px;
 `
 
 const PostContainer = styled.div `
