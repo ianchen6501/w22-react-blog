@@ -29,7 +29,7 @@ const Footer = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${props => props.theme.colors.light_gray};
+  background: rgb(0,0,0,0.2);
 `
 
 export default function App() {
