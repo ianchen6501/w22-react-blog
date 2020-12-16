@@ -184,8 +184,9 @@ export default function LoginPage() {
         <Button>登入</Button>
       </form>
       { errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage> }
-      <button onclick={() => login()}>登入</button>
+      <button onClick={() => login()}>登入</button>
       {/* <button onclick={() => logout()}>登出</button> */}
+      <div id="status"></div>
     </Container>
   )
 }
