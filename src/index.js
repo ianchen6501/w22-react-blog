@@ -81,7 +81,7 @@ const startApp = () => {
       //FB.login()預設只會回傳基本的授權資料
       //如果想取得額外的授權資料需要另外設定在scope參數裡面
       //可以設定的授權資料可以參考官方文件          
-      }, { scope: 'email,user_likes' });
+      });
         
     }
   }
