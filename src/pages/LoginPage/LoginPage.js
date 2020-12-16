@@ -44,6 +44,7 @@ const Button = styled.button `
   margin-top:10px;
 `
 
+
 export default function LoginPage() {
   const { setUser } = useContext(AuthContext)
   const [username, setUsername] = useState('')
@@ -133,6 +134,18 @@ export default function LoginPage() {
         });
 
       }
+
+      function login() {
+        FB.login(function (response) {
+          /*console.log(response);*/
+        });
+      }
+      
+      function logout() {
+        FB.logout(function (response) {
+          /*console.log(response)*/
+        });
+      }
     ` 
     body.appendChild(script)
   })
@@ -171,6 +184,8 @@ export default function LoginPage() {
         <Button>登入</Button>
       </form>
       { errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage> }
+      <button onclick={() => login()}>登入</button>
+      {/* <button onclick={() => logout()}>登出</button> */}
     </Container>
   )
 }
