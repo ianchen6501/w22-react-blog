@@ -62,7 +62,9 @@ const startApp = () => {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      // testAPI();
+      window.FB.api('/me',{fields: 'id,name,email'}, function (response) {
+        console.log(response)})
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -70,6 +72,7 @@ const startApp = () => {
       window.FB.login(function (response) {
         if (response.authResponse) {
           window.FB.api('/me',{fields: 'id,name,email'}, function (response) {
+            console.log(response)
             //這邊就可以判斷取得資料跟網站使用者資料是否一致
           });
         }
@@ -85,6 +88,7 @@ const startApp = () => {
       window.FB.login(function (response) {
         if (response.authResponse) {
           window.FB.api('/me',{fields: 'id,name,email'}, function (response) {
+            console.log(response)
             //這邊就可以判斷取得資料跟網站使用者資料是否一致
           });
         }
