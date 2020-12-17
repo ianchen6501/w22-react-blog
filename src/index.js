@@ -65,21 +65,6 @@ const startApp = () => {
       // testAPI();
       window.FB.api('/me',{fields: 'id,name,email'}, function (response) {
         console.log(response)})
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-      window.FB.login(function (response) {
-        if (response.authResponse) {
-          window.FB.api('/me',{fields: 'id,name,email'}, function (response) {
-            console.log(response)
-            //這邊就可以判斷取得資料跟網站使用者資料是否一致
-          });
-        }
-      //FB.login()預設只會回傳基本的授權資料
-      //如果想取得額外的授權資料需要另外設定在scope參數裡面
-      //可以設定的授權資料可以參考官方文件          
-      });
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
@@ -95,8 +80,7 @@ const startApp = () => {
       //FB.login()預設只會回傳基本的授權資料
       //如果想取得額外的授權資料需要另外設定在scope參數裡面
       //可以設定的授權資料可以參考官方文件          
-      });
-        
+      }, {scope : 'public_profile,email'});
     }
   }
 }
